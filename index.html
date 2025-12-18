@@ -4,449 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Chimera_II | CanSat 2025/26</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-dark: #0a0e17;
-            --secondary-dark: #111827;
-            --accent-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
-            --accent-purple: #8b5cf6;
-            --text-primary: #f3f4f6;
-            --text-secondary: #d1d5db;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --section-gap: 5rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--primary-dark);
-            color: var(--text-primary);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1.2rem 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--accent-purple);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-cyan);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 10rem 0 6rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            color: var(--text-secondary);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Section Styling */
-        section {
-            padding: var(--section-gap) 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3.5rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        /* Project Overview */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 2.5rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: transform 0.4s ease, border-color 0.4s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-cyan);
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-        }
-
-        /* Image Gallery */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 250px;
-            position: relative;
-            border: 2px solid transparent;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-            border-color: var(--accent-blue);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(10, 14, 23, 0.9), transparent);
-            color: white;
-            padding: 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        /* Team Section */
-        .team-members {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .team-member {
-            text-align: center;
-            max-width: 250px;
-        }
-
-        .member-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: white;
-            border: 5px solid var(--secondary-dark);
-        }
-
-        .member-avatar img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--secondary-dark);
-        }
-
-        /* Mission Details */
-        .mission-details {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 3rem;
-            margin-top: 2rem;
-            border-left: 5px solid var(--accent-cyan);
-        }
-
-        .mission-details ul {
-            list-style-position: inside;
-            margin-top: 1.5rem;
-        }
-
-        .mission-details li {
-            margin-bottom: 0.8rem;
-            padding-left: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary-dark);
-            padding: 4rem 0 2rem;
-            margin-top: 5rem;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent-blue);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary-dark);
-                flex-direction: column;
-                padding: 2rem;
-                text-align: center;
-                border-top: 1px solid rgba(59, 130, 246, 0.2);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .hero {
-                padding: 8rem 0 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .mission-details {
-                padding: 2rem 1.5rem;
-            }
-            
-            .gallery-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -506,15 +65,14 @@
     <section id="gallery">
         <div class="container">
             <h2 class="section-title">Projekt-Galerie</h2>
-            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">Bilder unseres Designs, der Komponenten und Tests</p>
+            <p class="section-subtitle">Bilder unseres Designs, der Komponenten und Tests</p>
             
             <div class="gallery-container">
-                <!-- Replace these image sources with your actual images -->
                 <div class="gallery-item">
                     <img src="images/team-photo.jpg" alt="Team Chimera_II bei der Arbeit">
                     <div class="gallery-overlay">
                         <h4>Teamarbeit</h4>
-                        <p>Unsere Team bei der Entwicklung</p>
+                        <p>Unser Team bei der Entwicklung</p>
                     </div>
                 </div>
                 <div class="gallery-item">
@@ -563,7 +121,6 @@
             <div class="team-members">
                 <div class="team-member">
                     <div class="member-avatar">
-                        <!-- Replace with actual team member photo -->
                         <img src="images/lukas.jpg" alt="Lukas Haller">
                     </div>
                     <h3>Lukas Haller</h3>
@@ -572,7 +129,6 @@
                 </div>
                 <div class="team-member">
                     <div class="member-avatar">
-                        <!-- Replace with actual team member photo -->
                         <img src="images/daniel.jpg" alt="Daniel Winkler">
                     </div>
                     <h3>Daniel Winkler</h3>
@@ -581,7 +137,6 @@
                 </div>
                 <div class="team-member">
                     <div class="member-avatar">
-                        <!-- Replace with actual team member photo -->
                         <img src="images/liam.jpg" alt="Liam Sonnleitner">
                     </div>
                     <h3>Liam Sonnleitner</h3>
@@ -590,11 +145,11 @@
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 4rem;">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 1.5rem;">Unsere Mentoren</h3>
-                <div style="display: inline-block; text-align: left; background-color: var(--card-bg); padding: 1.5rem 2.5rem; border-radius: 10px;">
+            <div class="mentors-section">
+                <h3>Unsere Mentoren</h3>
+                <div class="mentors-list">
                     <p><strong>Prof. Dipl.-Ing. BSc Herwig Guggi</strong><br>herwig.guggi@htl-klu.at</p>
-                    <p style="margin-top: 1rem;"><strong>Ing. Dipl.-Inform. BEd Hermann Kröpfl</strong><br>hermann.kroepfl@htl-klu.at</p>
+                    <p><strong>Ing. Dipl.-Inform. BEd Hermann Kröpfl</strong><br>hermann.kroepfl@htl-klu.at</p>
                 </div>
             </div>
         </div>
@@ -606,7 +161,7 @@
             <h2 class="section-title">Technische Details</h2>
             
             <div class="mission-details">
-                <h3><i class="fas fa-bullseye" style="color: var(--accent-cyan); margin-right: 10px;"></i> Unsere Missionsziele</h3>
+                <h3><i class="fas fa-bullseye mission-icon"></i> Unsere Missionsziele</h3>
                 <ul>
                     <li>Entwicklung eines vollständig autonomen CanSat-Systems mit Primär- und Sekundärmission</li>
                     <li>Stabilisierung des Falls durch eine entfaltbare Flugeinheit (Drohnen-Prinzip)</li>
@@ -615,7 +170,7 @@
                     <li>Demonstration der technischen Fähigkeiten unserer Schule HTL Mössingerstraße Klagenfurt</li>
                 </ul>
                 
-                <h3 style="margin-top: 2.5rem;"><i class="fas fa-tools" style="color: var(--accent-cyan); margin-right: 10px;"></i> Verfügbare Ressourcen</h3>
+                <h3><i class="fas fa-tools mission-icon"></i> Verfügbare Ressourcen</h3>
                 <p>Dank unserer Schule haben wir Zugang zu:</p>
                 <ul>
                     <li>3D-Druckern für Gehäuse und mechanische Teile</li>
@@ -632,7 +187,7 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div>
+                <div class="footer-col">
                     <div class="footer-logo">Chimera_II</div>
                     <p>Ein Team der HTL Mössingerstraße Klagenfurt, das am österreichischen CanSat-Wettbewerb 2025/26 teilnimmt.</p>
                     <div class="social-links">
@@ -643,53 +198,28 @@
                     </div>
                 </div>
                 
-                <div>
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 1.5rem;">Kontaktinformation</h3>
-                    <p><i class="fas fa-envelope" style="margin-right: 10px; color: var(--accent-blue);"></i> team@chimera2-cansat.at</p>
-                    <p><i class="fas fa-school" style="margin-right: 10px; color: var(--accent-blue);"></i> HTL Mössingerstraße, 9020 Klagenfurt</p>
-                    <p><i class="fas fa-users" style="margin-right: 10px; color: var(--accent-blue);"></i> Team-E-Mail: chimera2-team@edu.htl-klu.at</p>
+                <div class="footer-col">
+                    <h3>Kontaktinformation</h3>
+                    <p><i class="fas fa-envelope contact-icon"></i> team@chimera2-cansat.at</p>
+                    <p><i class="fas fa-school contact-icon"></i> HTL Mössingerstraße, 9020 Klagenfurt</p>
+                    <p><i class="fas fa-users contact-icon"></i> Team-E-Mail: chimera2-team@edu.htl-klu.at</p>
                 </div>
                 
-                <div>
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 1.5rem;">CanSat Wettbewerb</h3>
+                <div class="footer-col">
+                    <h3>CanSat Wettbewerb</h3>
                     <p>Der CanSat-Wettbewerb ist eine Initiative der Europäischen Weltraumorganisation (ESA), bei der Schüler einen satellitengroßen CanSat entwickeln und starten.</p>
-                    <p style="margin-top: 1rem;">Unsere Motivation: Außerschulische Erfahrung, Teamwork und praktische Raumfahrttechnik.</p>
+                    <p>Unsere Motivation: Außerschulische Erfahrung, Teamwork und praktische Raumfahrttechnik.</p>
                 </div>
             </div>
             
             <div class="copyright">
                 <p>&copy; 2025 Team Chimera_II - CanSat 2025/26. Alle Rechte vorbehalten.</p>
-                <p style="margin-top: 0.5rem;">Diese Seite wird auf GitHub Pages gehostet.</p>
+                <p>Diese Seite wird auf GitHub Pages gehostet.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Navigation -->
-    <script>
-        document.getElementById('mobileToggle').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    // Close mobile menu if open
-                    document.getElementById('navLinks').classList.remove('active');
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
